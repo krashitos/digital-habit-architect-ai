@@ -1,0 +1,10 @@
+.venv/
+__pycache__/
+*.pyc
+.env
+verify_api.py
+.venv/
+node_modules/
+.vscode/
+.idea/
+*.log
