@@ -104,14 +104,18 @@ IMPORTANT: Return ONLY the JSON object. No markdown code fences, no extra text."
     try:
         start_time = time.time()
 
-        response = httpx.get(
+        response = httpx.post(
             POLLINATIONS_URL,
-            params={
+            json={
+                "messages": [
+                    {"role": "system", "content": "You are a behavioral psychology expert. Return ONLY valid JSON."},
+                    {"role": "user", "content": prompt}
+                ],
                 "model": "openai",
                 "seed": int(time.time()),
-                "prompt": prompt,
+                "jsonMode": True
             },
-            timeout=60.0,
+            timeout=120.0,
         )
 
         if response.status_code != 200:
